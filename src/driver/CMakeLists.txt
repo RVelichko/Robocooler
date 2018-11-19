@@ -1,0 +1,34 @@
+set(APP_DRIVER driver)
+add_library(driver_modules
+    RfidController.cpp
+    GpioController.cpp
+    JsonExtractor.cpp
+    LogSender.cpp
+    CommandHandler.cpp
+    WsClient.cpp
+    WsClientWorker.cpp
+    )
+add_executable(${APP_DRIVER}
+    driver.cpp
+    )
+set(DRIVER_DEP_LIBS
+    driver_modules
+    rfid_module 
+    sig_dispatcher
+    log
+    tty_io
+    pthread
+    ssl
+    crypto
+    ${UUID_LIBRARIES}
+    boost_program_options
+    boost_filesystem
+    boost_system
+    ${CMAKE_THREAD_LIBS_INIT}
+    )
+if(ENABLE_WIRINGPI)
+    set(DRIVER_DEP_LIBS wiringPi ${DRIVER_DEP_LIBS})
+endif(ENABLE_WIRINGPI)
+target_link_libraries(${APP_DRIVER}
+    ${DRIVER_DEP_LIBS}
+    )

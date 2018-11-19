@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Nasladdin
+Comment=
+Exec=chromium-browser --incognito --disable-infobars --disable-suggestions-service --disable-translate --disable-save-password-bubble --start-maximized --noerrdialogs --kiosk "http://nasladdinui.azurewebsites.net/plantdisplay/index?plantId=1"
